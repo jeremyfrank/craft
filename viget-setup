@@ -1,0 +1,186 @@
+#!/usr/bin/env php
+<?php
+/**
+ * @author    Viget Labs
+ * @copyright Copyright (c) 2018 Viget Labs
+ * @link      https://viget.com/
+ * @package   vigetlabs/craft
+ * @since     1.0.0
+ * @license   MIT
+ */
+
+use yii\helpers\Console;
+
+use mikehaertl\shellcommand\Command as ShellCommand;
+
+const INSTALL_PLUGINS = [
+    'architect',
+    'environment-label',
+    'redactor',
+    'position-fieldtype',
+    'super-table',
+    'video-embedder',
+];
+
+const CONTENT_MODELS = [
+    'config/architect/setup',
+];
+
+// Set path constants
+define('CRAFT_BASE_PATH', __DIR__);
+define('CRAFT_VENDOR_PATH', CRAFT_BASE_PATH.'/vendor');
+
+// Load Composer's autoloader
+require_once CRAFT_VENDOR_PATH.'/autoload.php';
+
+// Load the .env file Craft created
+if (file_exists(CRAFT_BASE_PATH.'/.env')) {
+    $dotEnv = new Dotenv\Dotenv(CRAFT_BASE_PATH);
+    $dotEnv->load();
+}
+
+// By default, run the setup script
+if (empty($argv[1])) {
+    setupVigetCraft();
+} else {
+    // See what command we were passed in
+    switch ($argv[1]) {
+        case 'welcome':
+            // Display a welcome message
+            welcomeVigetCraft();
+            break;
+        default:
+            // Set up all the things!
+            setupVigetCraft();
+            break;
+    }
+}
+
+/**
+ * Display a welcome message
+ */
+function welcomeVigetCraft()
+{
+    $cdCommand         = 'cd '.basename(__DIR__); // cd to the project directory where this file is located
+    $craftSetupCommand = './craft setup';         // runs the craft setup command
+    $vigetSetupCommand = './'.basename(__FILE__); // runs the viget setup command
+
+    outputString(PHP_EOL.'ATTENTION: Instead of running the command above, run the command below to setup Craft from your terminal.', Console::FG_YELLOW);
+    outputString(PHP_EOL.'It performs the setup steps in the Craft setup command, followed by some additional setup steps specific to Viget.', Console::FG_YELLOW);
+    outputString(PHP_EOL.'    '.$cdCommand.' && '.$craftSetupCommand.' && '.$vigetSetupCommand, Console::FG_GREEN);
+    outputString(PHP_EOL.'Your setup is not complete until you run these two commands.', Console::FG_YELLOW);
+}
+
+/**
+ * Set up all the things!
+ */
+function setupVigetCraft()
+{
+    // Say hello
+    outputString(PHP_EOL.'Welcome to viget-setup', Console::FG_YELLOW);
+    // Install the default plugins
+    installPlugins();
+    // Run migrations to set up volumes, fields, sections and entry types
+    runMigrations();
+    // Include any final instructions
+    finalInstructions();
+    // Say goodbye
+    outputString(PHP_EOL.'Setup complete. Have a nice day!', Console::FG_YELLOW);
+}
+
+/**
+ * Install the default plugins
+ */
+function installPlugins()
+{
+    outputString(PHP_EOL.'Installing plugins', Console::FG_YELLOW);
+    $installPluginCmd = './craft install/plugin ';
+    foreach (INSTALL_PLUGINS as $pluginHandle) {
+        outputString('- installing plugin '.$pluginHandle);
+        executeShellCommand($installPluginCmd . $pluginHandle);
+    }
+}
+
+/**
+ * Run all migrations
+ */
+function runMigrations()
+{
+    // TODO Implement Craft content migrations.
+    // Architect's import command (./craft architect/import)
+    // doesn't currently do anything. Then we can remove
+    // this plugin from the project and rely on migrations.
+
+    // executeShellCommand('./craft migrate/all');
+}
+
+/**
+ * Any final instructions
+ */
+function finalInstructions() {
+    outputString(PHP_EOL.'Final instructions', Console::FG_YELLOW);
+    outputString(PHP_EOL.'1. Setup content models. Until migrations have been implemented, you’ll need to do this via the Craft admin. Click on Architect then copy and paste the contents of config/architect/setup.json and click the import button.', Console::FG_YELLOW);
+}
+
+/**
+ * Output a string to the console, using optional $args to color it, if supported
+ *
+ * @param string $string
+ *
+ * @return mixed
+ */
+function outputString($string)
+{
+    // DEBUG: streamSupportsAnsiColors below not working properly
+    // when run from composer script.
+    // $stream = \STDOUT;
+    // if (Console::streamSupportsAnsiColors($stream)) {
+        $args = func_get_args();
+        array_shift($args);
+        $string = Console::ansiFormat($string, $args);
+    // }
+
+    return Console::stdout($string.PHP_EOL);
+}
+
+/**
+ * Execute a shell command
+ *
+ * @param string $command
+ *
+ * @return string
+ */
+function executeShellCommand(string $command): string
+{
+    // Create the shell command
+    $shellCommand = new ShellCommand();
+    $shellCommand->setCommand($command);
+
+    // If we don't have proc_open, maybe we've got exec
+    if (!function_exists('proc_open') && function_exists('exec')) {
+        $shellCommand->useExec = true;
+    }
+
+    // Return the result of the command's output or error
+    if ($shellCommand->execute()) {
+        $result = $shellCommand->getOutput();
+    } else {
+        $result = $shellCommand->getError();
+    }
+
+    return $result;
+}
+
+/**
+ * Return whether a shell command exists or not
+ *
+ * @param string $command
+ *
+ * @return bool
+ */
+function shellCommandExists(string $command): bool
+{
+    $result = executeShellCommand('which '.$command);
+
+    return !empty($result);
+}

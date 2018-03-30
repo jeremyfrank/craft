@@ -1,0 +1,28 @@
+{#
+  Parameters
+  - videoUrl | plain text
+  - display  | position select | left, center, right
+ #}
+
+{%- import '_macros' as macros -%}
+{{ macros.css('blocks/video') }}
+
+{% switch block.display %}
+  {% case 'left' %}
+    {% set spacingClass = 'spacing-vertical-medium' %}
+    {% set displayClass = 'float-left' %}
+  {% case 'right' %}
+    {% set spacingClass = 'spacing-vertical-medium' %}
+    {% set displayClass = 'float-right' %}
+  {% default %}
+    {% set spacingClass = 'spacing-vertical-large' %}
+    {% set displayClass = '' %}
+{% endswitch %}
+
+<div class="video-block {{ spacingClass }}">
+  <div class="wrapper -extrawide">
+    <div class="video-block__inner {{ displayClass }}">
+      <iframe src="{{ craft.videoEmbedder.getEmbedUrl(block.videoUrl) }}"></iframe>
+    </div>
+  </div>
+</div>

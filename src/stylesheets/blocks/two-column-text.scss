@@ -1,0 +1,19 @@
+.two-column-text-block {
+  clear: both;
+
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .text {
+    width: calc(50% - 20px);
+  }
+
+  figcaption {
+    color: #777;
+    font-size: 16px;
+    font-style: normal;
+    margin: 0.5em 0 0;
+  }
+}

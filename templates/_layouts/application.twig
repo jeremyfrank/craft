@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+
+  <link rel="stylesheet" href="{{ rev('stylesheets/starter.css') }}">
+</head>
+
+<body>
+  <header id="header">
+  </header>
+
+  <main id="content" role="main" tabindex="-1">
+    {% block content %}
+    {% endblock %}
+  </main>
+
+  <footer id="footer">
+  </footer>
+
+  {% set appJS = (craft.app.config.general.setting.devMode) ? '/assets/javascripts/app.js' : rev('javascripts/app.js') %}
+
+  <script src="{{ appJS }}"></script>
+</body>

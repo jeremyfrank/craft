@@ -1,0 +1,14 @@
+{
+  "name": "craft",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "yarn run blendid",
+    "build": "yarn run blendid -- build"
+  },
+  "dependencies": {
+    "blendid": "4.4.3",
+    "node-sass-glob-importer": "5.1.1"
+  }
+}

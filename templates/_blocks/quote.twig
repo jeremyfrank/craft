@@ -1,0 +1,40 @@
+{#
+  Parameters
+  - quote       | rich text
+  - attribution | plain text
+  - display     | position select | left, center, right
+ #}
+
+{%- import '_macros' as macros -%}
+{{ macros.css('blocks/quote') }}
+
+{% set displayClass = block.display != 'center' ? 'float-' ~ block.display %}
+
+{% switch block.display %}
+  {% case 'left' %}
+    {% set spacingClass = 'spacing-vertical-small' %}
+    {% set wrapperClass = '-extrawide' %}
+    {% set displayClass = 'float-left' %}
+  {% case 'right' %}
+    {% set spacingClass = 'spacing-vertical-small' %}
+    {% set wrapperClass = '-extrawide' %}
+    {% set displayClass = 'float-right' %}
+  {% default %}
+    {% set spacingClass = 'spacing-vertical-medium' %}
+    {% set wrapperClass = '' %}
+    {% set displayClass = '' %}
+{% endswitch %}
+
+<div class="quote-block {{ spacingClass }}">
+  <div class="wrapper {{ wrapperClass }}">
+    <blockquote class="{{ displayClass }}">
+      {{ block.quote | raw }}
+
+      {% if block.attribution %}
+        <cite>
+          {{ block.attribution }}
+        </cite>
+      {% endif %}
+    </blockquote>
+  </div>
+</div>

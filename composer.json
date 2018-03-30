@@ -20,6 +20,7 @@
   "require": {
     "craftcms/cms": "^3.0.0-RC1",
     "vlucas/phpdotenv": "^2.4.0",
+    "clubstudioltd/craft-asset-rev": "^v6.0.0",
     "craftcms/redactor": "^1.0.0",
     "mikestecker/craft-videoembedder": "^v1.0.0",
     "pennebaker/craft-architect": "^2.2.0",

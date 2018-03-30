@@ -1,0 +1,14 @@
+{%- import '_macros' as macros -%}
+{{ macros.css('blocks/two-column-text') }}
+
+<div class="two-column-text-block spacing-vertical-small">
+  <div class="wrapper -extrawide">
+    <div class="text">
+      {{ block.column1 | raw }}
+    </div>
+
+    <div class="text">
+      {{ block.column2 | raw }}
+    </div>
+  </div>
+</div>

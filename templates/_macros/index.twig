@@ -1,0 +1,5 @@
+{%- macro css(stylesheet) -%}
+  {% spaceless %}
+    <link rel="stylesheet" href="{{ rev('stylesheets/' ~ stylesheet ~ '.css') }}">
+  {% endspaceless %}
+{%- endmacro -%}

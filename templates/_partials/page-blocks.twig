@@ -1,0 +1,3 @@
+{% for block in entry.pageBlocks.all %}
+  {% include '_blocks/' ~ block.type.handle ignore missing %}
+{% endfor %}

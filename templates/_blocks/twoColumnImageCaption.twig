@@ -1,0 +1,24 @@
+{%- import '_macros' as macros -%}
+{{ macros.css('blocks/two-column-image-caption') }}
+
+<div class="two-column-image-caption-block spacing-vertical-small">
+  <div class="wrapper -extrawide">
+    {% for item in block.columns.all %}
+      {% set image = item.image[0] ?? null %}
+      {% set transformOptions = {
+        width: 600,
+        height: 360
+      } %}
+
+      {% if image %}
+        <figure>
+          <img src="{{ image.url(transformOptions) }}" alt="">
+
+          <figcaption>
+            <p>{{ item.caption }}</p>
+          </figcaption>
+        </figure>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>

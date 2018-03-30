@@ -1,0 +1,22 @@
+.video-block {
+  clear: both;
+}
+
+.video-block__inner {
+  position: relative;
+
+  &::before {
+    content: '';
+    display: block;
+    padding-top: (9/16) * 100%;
+    width: 100%;
+  }
+
+  iframe {
+    border: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}

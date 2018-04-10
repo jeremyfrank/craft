@@ -106,7 +106,8 @@ function installPlugins()
  */
 function runMigrations()
 {
-    // TODO Finish implementing Craft content migrations.
+    // TODO
+    // Finish implementing Craft content migrations.
     // Architect's import command (./craft architect/import)
     // doesn't currently do anything. Then we can remove
     // that plugin from the project and rely on migrations.
@@ -119,7 +120,7 @@ function runMigrations()
  */
 function finalInstructions() {
     outputString(PHP_EOL.'Final instructions', Console::FG_YELLOW);
-    outputString(PHP_EOL.'1. Setup content models. Until migrations have been implemented, you’ll need to do this via the Craft admin. Click on Architect then copy and paste the contents of config/architect/setup.json and click the import button.', Console::FG_YELLOW);
+    outputString(PHP_EOL.'1. Setup content models. Until migrations have been finished, you’ll need to do this via the Craft admin. Click on Architect then copy and paste the contents of config/architect/setup.json and click the import button.', Console::FG_YELLOW);
     outputString(PHP_EOL.'2. Install front-end build dependencies via yarn.', Console::FG_YELLOW);
     outputString(PHP_EOL.'    yarn install', Console::FG_GREEN);
 }

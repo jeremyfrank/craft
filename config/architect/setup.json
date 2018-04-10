@@ -51,27 +51,6 @@
     "fields": [
         {
             "group": "Common",
-            "name": "Hero",
-            "handle": "hero",
-            "instructions": "",
-            "type": "craft\\fields\\Assets",
-            "useSingleFolder": "",
-            "defaultUploadLocationSource": "placeholders",
-            "defaultUploadLocationSubpath": "",
-            "singleUploadLocationSource": "placeholders",
-            "singleUploadLocationSubpath": "",
-            "restrictFiles": "1",
-            "allowedKinds": [
-                "image"
-            ],
-            "sources": "*",
-            "viewMode": "large",
-            "limit": "1",
-            "selectionLabel": "",
-            "localizeRelations": false
-        },
-        {
-            "group": "Common",
             "name": "Page Blocks",
             "handle": "pageBlocks",
             "instructions": "",

@@ -97,7 +97,6 @@ function installPlugins()
     outputString(PHP_EOL.'Installing plugins', Console::FG_YELLOW);
     $installPluginCmd = './craft install/plugin ';
     foreach (INSTALL_PLUGINS as $pluginHandle) {
-        outputString('- installing plugin '.$pluginHandle);
         executeShellCommand($installPluginCmd . $pluginHandle);
     }
 }
@@ -167,8 +166,10 @@ function executeShellCommand(string $command): string
     // Return the result of the command's output or error
     if ($shellCommand->execute()) {
         $result = $shellCommand->getOutput();
+        outputString(PHP_EOL.$result, Console::FG_GREEN);
     } else {
         $result = $shellCommand->getError();
+        outputString(PHP_EOL.$result, Console::FG_RED);
     }
 
     return $result;

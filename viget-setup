@@ -173,17 +173,3 @@ function executeShellCommand(string $command): string
 
     return $result;
 }
-
-/**
- * Return whether a shell command exists or not
- *
- * @param string $command
- *
- * @return bool
- */
-function shellCommandExists(string $command): bool
-{
-    $result = executeShellCommand('which '.$command);
-
-    return !empty($result);
-}

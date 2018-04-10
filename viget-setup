@@ -107,12 +107,12 @@ function installPlugins()
  */
 function runMigrations()
 {
-    // TODO Implement Craft content migrations.
+    // TODO Finish implementing Craft content migrations.
     // Architect's import command (./craft architect/import)
     // doesn't currently do anything. Then we can remove
-    // this plugin from the project and rely on migrations.
+    // that plugin from the project and rely on migrations.
 
-    // executeShellCommand('./craft migrate/all');
+    executeShellCommand('./craft migrate/all');
 }
 
 /**

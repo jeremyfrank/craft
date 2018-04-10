@@ -2,19 +2,6 @@
     "fieldGroups": [
         "Common"
     ],
-    "volumes": [
-        {
-            "name": "Placeholders",
-            "handle": "placeholders",
-            "type": "craft\\volumes\\Local",
-            "hasUrls": true,
-            "url": "@web\/placeholders",
-            "settings": {
-                "path": "placeholders"
-            },
-            "fieldLayout": []
-        }
-    ],
     "sections": [
         {
             "name": "Homepage",

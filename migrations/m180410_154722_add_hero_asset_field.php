@@ -6,9 +6,9 @@ use Craft;
 use craft\db\Migration;
 
 /**
- * m180410_154722_hero_asset_field migration.
+ * m180410_154722_add_hero_asset_field migration.
  */
-class m180410_154722_hero_asset_field extends Migration
+class m180410_154722_add_hero_asset_field extends Migration
 {
     /**
      * @inheritdoc

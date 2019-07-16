@@ -6,9 +6,9 @@ use Craft;
 use craft\db\Migration;
 
 /**
- * m180410_153125_asset_volume_placeholders migration.
+ * m180410_153125_add_asset_volume_placeholders migration.
  */
-class m180410_153125_asset_volume_placeholders extends Migration
+class m180410_153125_add_asset_volume_placeholders extends Migration
 {
     /**
      * @inheritdoc
@@ -47,7 +47,7 @@ class m180410_153125_asset_volume_placeholders extends Migration
         $placeholders = Craft::$app->volumes->getVolumeByHandle("placeholders");
         if (!is_null($placeholders)) {
             Craft::$app->volumes->deleteVolumeById($placeholders->id);
-            echo "m180330_201159_asset_volume_placeholders has been reverted.\n";
+            echo "m180410_153125_add_asset_volume_placeholders has been reverted.\n";
         }
 
         return true;

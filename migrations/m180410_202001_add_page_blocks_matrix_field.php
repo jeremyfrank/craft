@@ -6,9 +6,9 @@ use Craft;
 use craft\db\Migration;
 
 /**
- * m180410_202001_page_blocks_matrix_field migration.
+ * m180410_202001_add_page_blocks_matrix_field migration.
  */
-class m180410_202001_page_blocks_matrix_field extends Migration
+class m180410_202001_add_page_blocks_matrix_field extends Migration
 {
     /**
      * @inheritdoc

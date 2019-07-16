@@ -22,7 +22,7 @@
   <footer id="footer">
   </footer>
 
-  {% set appJS = (craft.app.config.general.setting.devMode) ? '/assets/javascripts/app.js' : rev('javascripts/app.js') %}
+  {% set appJS = craft.app.config.general.devMode ? '/assets/javascripts/app.js' : rev('javascripts/app.js') %}
 
   <script src="{{ appJS }}"></script>
 </body>

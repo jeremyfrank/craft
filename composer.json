@@ -17,10 +17,10 @@
     "docs": "https://github.com/vigetlabs/craft"
   },
   "require": {
-    "craftcms/cms": "^3.0.0",
+    "craftcms/cms": "^3.2.0",
     "vlucas/phpdotenv": "^2.4.0",
     "clubstudioltd/craft-asset-rev": "^v6.0.0",
-    "craftcms/redactor": "^1.1.0",
+    "craftcms/redactor": "^2.0.0",
     "mikestecker/craft-videoembedder": "^v1.0.0",
     "rias/craft-position-fieldtype": "^v1.0",
     "topshelfcraft/environment-label": "^3.1.1",
